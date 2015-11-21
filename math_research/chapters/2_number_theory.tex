@@ -1,0 +1,70 @@
+\chapter{Number Theory}
+
+\section{Induction}
+
+Given some statement involving
+a natural number $n$, induction
+can be used to prove the statement
+for all $n$.
+\begin{description}
+    \item[Base Case] The first step is to prove the
+    statement for the first value of $n$, usually
+    1 or 0.
+
+    \item[Inductive Step] The second step proves
+    the statement by first assuming the statement
+    is true for $n$, then showing the statement
+    is true for $n + 1$.
+\end{description}
+
+\subsection{Example}
+
+Statement:
+$$1 + 2 + 3 + ... + n = \frac{n(n + 1)}{2}$$
+
+\noindent
+Proof:
+\begin{description}
+    \item[Base Case]
+    \begin{equation*}
+        \begin{split}
+        1 & = \frac{1(1 + 1)}{2} \\
+        1 & = 1
+        \end{split}
+    \end{equation*}
+
+    \item[Inductive Step] Assume true for $n$:
+    $$1 + 2 + 3 + ... + n = \frac{n(n + 1)}{2}$$
+    Now, prove for $n + 1$:
+    \begin{equation}
+        \begin{split}
+        1 + 2 + 3 + ... + n + (n + 1) &= \frac{(n + 1)(n + 2)}{2} \\ 
+        \overbrace{1 + 2 + 3 + ... + n}^{n(n + 1)/2} + n + 1 &=
+        \frac{(n + 1)(n + 2)}{2} \\
+        \frac{n(n + 1)}{2} + n + 1 &= \frac{(n + 1)(n + 2)}{2} \\
+        \frac{n(n + 1) + 2(n + 1)}{2} &= \frac{(n + 1)(n + 2)}{2} \\
+        \frac{(n + 1)(n + 2)}{2} &= \frac{(n + 1)(n + 2)}{2} \\
+        \end{split}
+    \end{equation*}
+
+\end{description}
+
+\section{Divisibility}
+
+$a | b$ is read ''a divides b'', meaning that $a/b$
+is an integer.
+
+\begin{description}
+    \item[Definition] $a | b$ iff there exists an integer $q$
+    such that $aq = b$.
+
+    \item[Theorems]
+        \begin{enumerate}
+            \item
+            If $a | b$ and $b | c$, then $a | c$. Proof:
+            $$aq_1 = b, bq_2 = c$$
+            $$a\underbrace{q_1q_2}_{\text{an integer}} = c$$
+            $$a | c$$
+        \end{enumerate}
+
+\end{description}
