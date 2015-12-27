@@ -1,0 +1,41 @@
+\chapter{Integration \& Applications}
+
+\section{Rules of Integration}
+
+\subsection{Sum Rule}
+The integral of a sum is the sum of the integrals:
+
+$$\int (f(x) + g(x))dx = \int f(x)dx + \int g(x)dx$$
+
+\subsection{Constant Multiple Rule}
+You can ''pull out'' a constant from inside an integral:
+
+$$\int kf(x)dx = k \int f(x)dx$$
+
+\subsection{Power Rule}
+For $n \ne -1$:
+$$\int x^n dx = \frac{x^{n + 1}}{n + 1} + C$$
+
+\begin{description}
+    \item[Example 1.]
+    $$\int x^4dx = \frac{x^5}{5} + C + C$$
+    
+    \item[Example 2.]
+    $$\int \sqrt{x}dx = \frac{2x^{3/2}}{3} + C$$
+\end{description}
+
+\subsection{Application to motion}
+
+To go back from acceleration to velocity, and velocity
+to displacement, integrate.
+
+$$v(t) = \int a(t)dt$$
+$$d(t) = \int v(t)dt$$
+
+We can derive our standard equations of motion for constant
+acceleration with integration:
+
+$$a(t) = a$$
+$$v(t) = \int a(t)dt = at + C = v_0 + at$$
+$$d(t) = \int v(t)dt = v_0t + \frac{1}{2}at^2 + C =
+d_0 + v_0t + \frac{1}{2}at^2$$
