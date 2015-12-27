@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>School Notes</title>
+
+        <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css">
+        <link rel="stylesheet" href="side-menu.css">
+        
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <style>
+            iframe {
+                border: none;
+            }
+            .content * {
+                /* why do people like gray text?! */
+                color: black;
+            }
+            .page-container > div:not(.active) {
+                display: none;
+            }
+        </style>
+    </head>
+
+    <body>
+        <div id="layout">
+            <div id="menu">
+                <div class="pure-menu">
+                    <a class="pure-menu-heading" onclick="switchTo('home-page', this)">Notes</a>
+                    <ul class="pure-menu-list">
+                        <li class="pure-menu-item">
+                            <a class="pure-menu-link" onclick="javascript:nav('ap_physics_c', this)">AP Physics C</a>
+                        </li>
+                        <li class="pure-menu-item">
+                            <a class="pure-menu-link">AP Calculus BC</a>
+                        </li>
+                        <li class="pure-menu-item">
+                            <a class="pure-menu-link">AP U.S. History</a>
+                        </li>
+                        <li class="pure-menu-item">
+                            <a class="pure-menu-link">AP English Comp.</a>
+                        </li>
+                        <li class="pure-menu-item">
+                            <a class="pure-menu-link">Math Research</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div id="main" class="page-container">
+                <div id="home-page" class="active">
+                    <div class="header">
+                        <h1>August's School Notes</h1>
+                    </div>
+
+                    <div class="content">
+                        <h2 class="content-subhead">Subjects</h2>
+                        <p>
+                            The notes here are from subjects I'm currently
+                            taking in my junior year of high-school.
+                        </p>
+                        <p>
+                            <b>Math Research</b> is the only subject included
+                            that does not follow an AP curriculum. The subject
+                            covers areas of math often not taught in high-school:
+                            graph theory, number theory, and combinatorics.
+                        </p>
+
+                        <h2 class="content-subhead">Src?</h2>
+                        <p>
+                            <a href="https://github.com/augustt198/school">On GitHub</a>
+                        </p>
+                    </div>
+                </div>
+                <div id="missing-page">
+                    <div class="header">
+                        <h1>No notes for this subject currently exist</h1>
+                    </div>
+                </div>
+                <div id="viewer-page">
+                    <iframe src="" style="width: 100%; height: 100vmin"></iframe>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            var URL_PREFIX = 'http://school.august.codes/pdf/';
+            var PDF_VIEWER = "https://mozilla.github.io/pdf.js/web/viewer.html";
+            var NAV = {
+                ap_physics_c: 'ap_physics_c',
+                ap_calc_bc: 'ap_calc_bc',
+                ap_us_hist: 'apush',
+                ap_english_comp: 'ap_english_comp',
+                math_research: 'math_research'
+            }
+
+            function switchTo(activeId, caller) {
+                console.log(caller);
+                var selected = document.getElementsByClassName('pure-menu-selected');
+                for (var i = 0; i < selected.length; i++)
+                    selected[i].setAttribute('class', 'pure-menu-item');
+
+                if (caller.getAttribute('class') != 'pure-menu-heading')
+                    caller.setAttribute('class', 'pure-menu-item pure-menu-selected');
+
+                var actives = document.querySelectorAll('.page-container > .active');
+                for (var i = 0; i < actives.length; i++) {
+                    if (actives[i].id == activeId)
+                        return; // already active
+                }
+                for (var i = 0; i < actives.length; i++)
+                    actives[i].removeAttribute('class');
+
+                document.getElementById(activeId).setAttribute('class', 'active');
+            }
+
+            function nav(key, caller) {
+                var obj = NAV[key];
+                if (obj == null) {
+                    switchTo('missing-page', caller);        
+                } else {
+                    var iframe = document.querySelector('#viewer-page > iframe');
+                    iframe.src = PDF_VIEWER + "?file=" + URL_PREFIX + obj;
+                    switchTo('viewer-page', caller);
+                }
+            }
+        </script>
+    </body>
+</html>
